@@ -1,5 +1,3 @@
-This file lists the Python packages required by the application.
-The deployment service will use this to install them.
 Flask
 gunicorn
 transformers
