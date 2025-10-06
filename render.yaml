@@ -1,0 +1,28 @@
+# render.yaml
+# This file defines the infrastructure for deploying the Healthcare Chatbot on Render.
+# Render will automatically detect this file and configure the services.
+
+services:
+  # A web service for the Flask API
+  - type: web
+    name: healthcare-chatbot
+    # Use the 'docker' runtime environment
+    env: docker
+    
+    # Specifies the instance type. 'free' is suitable for demos and small projects.
+    # Other options include 'starter', 'standard', etc.
+    plan: free
+
+    # Health check path to ensure the service is running correctly.
+    # The app.py has a '/' endpoint that returns a success message.
+    healthCheckPath: /
+    
+    # Environment variables for the service.
+    # It's highly recommended to let Render generate a secure, random value for secrets.
+    envVars:
+      - key: ENCRYPTION_KEY
+        # This will create a secure, random string for your encryption key upon first deploy.
+        # You can also manually set a 'value' if you prefer.
+        generateValue: true
+      - key: PYTHON_VERSION
+        value: 3.9
